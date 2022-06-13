@@ -35,8 +35,6 @@
 <!-- UI implementation -->
 
 <body>
-  <div id="progressbar"></div>
-  <div id="scrollpath"></div>
   <div class="page">
     <h1>WOMBO x Magic Activated ✨ </h1>
     <br>
@@ -74,12 +72,4 @@
 
     <a href="/logout">Logout</a>
   </div>
-  <script type="text/javascript">
-	let progress = document.getElementById('progressbar');
-	let totalHeight = document.body.scrollHeight - window.innerHeight;
-	window.onscroll = function () {
-		let progressHeight = (window.pageYOffset / totalHeight) * 100;
-		progress.style.height = progressHeight + "%";
-	}
-</script>
 </body>
