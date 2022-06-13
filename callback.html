@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+  <!-- Automatically handle auth callback using Magic! -->
+  
+  <script
+    src="https://auth.magic.link/pnp/callback"
+    data-magic-publishable-api-key="pk_live_8E5EE1F5C179DE02">
+  </script>
+
+  <!-- Use data from Magic! -->
+
+  <script>
+    window.addEventListener('@magic/ready', (e) => {
+      const { idToken, userMetadata, oauth } = e.detail;
+
+      const idTokenEl = document.getElementById('idToken');
+      const userMetadataEl = document.getElementById('userMetadata');
+      const oauthEl = document.getElementById('oauth');
+
+      idTokenEl.innerText = JSON.stringify(idToken, null, 2);
+      userMetadataEl.innerText = JSON.stringify(userMetadata, null, 2);
+      oauthEl.innerText = oauth ? JSON.stringify(oauth, null, 2) : 'getRedirectResult() only works for social logins :)';
+    });
+  </script>
+
+
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+
+<!-- UI implementation -->
+
+<body>
+  <div id="progressbar"></div>
+  <div id="scrollpath"></div>
+  <div class="page">
+    <h1>WOMBO x Magic Activated ✨ </h1>
+    <br>
+    <div class="data-container">
+    <div class="description" align="center">
+      Your user has successfully logged in!  You can now collect some data (for new users), or show returning users their profile or feed.
+      <br>
+      <br>
+      <div align="center"><b>Pro tip:</b> Check out <a href="https://niftys.com">Nifty's</a> for a good example of
+        new user data intake via a redirect to their <span class="code">/onboarding</span> endpoint!</div>
+    </div>
+
+    <div class="data">
+      <label><span class="code">Magic.user.getIdToken()</span> result</label>
+      <pre id="idToken">Loading...</pre>
+    </div>
+
+    <div class="data">
+      <label><span class="code">Magic.user.getMetadata()</span> result</label>
+      <br>
+      <div class="description">
+        You'll call this to get the authenticated user's data, which you can then save to your database.
+      </div>
+      <pre id="userMetadata">Loading...</pre>
+    </div>
+
+    <div class="data">
+      <label><span class="code">getRedirectResult()</span></label>
+        <div class="description">
+          This data is returned when someone initially authenticates via social.
+        </div>
+      <pre id="oauth">Loading...</pre>
+    </div>
+    </div>
+
+    <a href="/logout">Logout</a>
+  </div>
+  <script type="text/javascript">
+	let progress = document.getElementById('progressbar');
+	let totalHeight = document.body.scrollHeight - window.innerHeight;
+	window.onscroll = function () {
+		let progressHeight = (window.pageYOffset / totalHeight) * 100;
+		progress.style.height = progressHeight + "%";
+	}
+</script>
+</body>

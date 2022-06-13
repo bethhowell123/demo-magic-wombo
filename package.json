@@ -1,0 +1,12 @@
+{
+  "private": true,
+  "name": "magic-login-wombo-demo",
+  "version": "0.1.0",
+  "description": "Wombo x Magic Demo w/ Email, Social, and SMS",
+  "scripts": {
+    "start": "http-server --proxy http://localhost:8080? -a localhost -o /login"
+  },
+  "dependencies": {
+    "http-server": "13.0.2"
+  }
+}
